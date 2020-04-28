@@ -19,8 +19,8 @@ import (
 	"github.com/decred/dcrd/dcrjson/v3"
 	"github.com/decred/dcrd/dcrutil/v3"
 
+	wallettypes "decred.org/dcrwallet/rpc/jsonrpc/types"
 	dcrdtypes "github.com/decred/dcrd/rpc/jsonrpc/types/v2"
-	wallettypes "github.com/decred/dcrwallet/rpc/jsonrpc/types"
 
 	flags "github.com/jessevdk/go-flags"
 )
