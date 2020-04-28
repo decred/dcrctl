@@ -18,7 +18,6 @@ import (
 
 	"github.com/decred/dcrd/dcrjson/v3"
 	"github.com/decred/dcrd/dcrutil/v3"
-	"github.com/decred/dcrd/internal/version"
 
 	dcrdtypes "github.com/decred/dcrd/rpc/jsonrpc/types/v2"
 	wallettypes "github.com/decred/dcrwallet/rpc/jsonrpc/types"
@@ -274,7 +273,7 @@ func loadConfig() (*config, []string, error) {
 	usageMessage := fmt.Sprintf("Use %s -h to show options", appName)
 	if preCfg.ShowVersion {
 		fmt.Printf("%s version %s (Go version %s %s/%s)\n", appName,
-			version.String(), runtime.Version(), runtime.GOOS, runtime.GOARCH)
+			versionString(), runtime.Version(), runtime.GOOS, runtime.GOARCH)
 		os.Exit(0)
 	}
 
