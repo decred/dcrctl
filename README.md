@@ -9,8 +9,8 @@ dcrd and dcrwallet.
 In its default configuration, dcrctl connects to dcrd's mainnet RPC port on
 localhost.  The `--wallet` and `--testnet` flags change these defaults to the
 dcrwallet RPC port and/or testnet ports.  The `--rpcserver/-s` flag can be used
-to specify to specify other hostnames or IP addresses of the server, and can
-also be used to override the port defaults.
+to specify other hostnames or IP addresses of the server, and can also be used
+to override the port defaults.
 
 Dcrctl will attempt to read dcrd and dcrwallet config files for the
 user/password authentication.  If these fields cannot be read, dcrctl must be
