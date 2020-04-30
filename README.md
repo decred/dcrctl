@@ -1,8 +1,13 @@
 dcrctl
 ======
 
+[![Build Status](https://github.com/decred/dcrctl/workflows/Build%20and%20Test/badge.svg)](https://github.com/decred/dcrctl/actions)
+[![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
+[![Go Report Card](https://goreportcard.com/badge/github.com/decred/dcrctl)](https://goreportcard.com/report/github.com/decred/dcrctl)
+
 Dcrctl is a command-line client for interacting with the JSON-RPC servers of
-dcrd and dcrwallet.
+[dcrd](https://github.com/decred/dcrd) and
+[dcrwallet]((https://github.com/decred/dcrd)).
 
 ## Usage
 
@@ -37,6 +42,17 @@ in the latest Decred release.
 Alternatively, a development build can be performed by running `go install` in a
 locally checked-out repository.
 
+## Contact
+
+If you have any further questions you can find us at:
+
+https://decred.org/community
+
+## Issue Tracker
+
+The [integrated github issue tracker](https://github.com/decred/dcrctl/issues)
+is used for this project.
+
 ## License
 
-Dcrctl is licensed under a permissive ISC license.
+dcrctl is licensed under the [copyfree](http://copyfree.org) ISC License.
