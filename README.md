@@ -7,7 +7,7 @@ dcrctl
 
 Dcrctl is a command-line client for interacting with the JSON-RPC servers of
 [dcrd](https://github.com/decred/dcrd) and
-[dcrwallet]((https://github.com/decred/dcrd)).
+[dcrwallet](https://github.com/decred/dcrwallet).
 
 ## Usage
 
