@@ -5,6 +5,10 @@ decred.org/dcrwallet v1.2.3-0.20200519180100-f1aa4c354e05 h1:xongFmW2UgEOGu4zQ4V
 decred.org/dcrwallet v1.2.3-0.20200519180100-f1aa4c354e05/go.mod h1:V6pzOHJuuWZaUPUZZL2kiyx9Co3lVD0DRqDXJTWA+3c=
 decred.org/dcrwallet v1.2.3-0.20200706153707-8cf356858595 h1:g/ysjkdBeN4Z/WU3bftsq3K5uFmiYgHNasr6SbGQDE4=
 decred.org/dcrwallet v1.2.3-0.20200706153707-8cf356858595/go.mod h1:94TXEZ/7ygHaOIbv1six5TNvozRvFUaMNN1qzjGVm14=
+decred.org/dcrwallet v1.2.3-0.20200727154839-096e3bee25f2 h1:iwsnZPdoo1ownS4T2asE3rZAwkDwfufQ+LanREPsFBY=
+decred.org/dcrwallet v1.2.3-0.20200727154839-096e3bee25f2/go.mod h1:3cZSQAgJzWXeSKMxWuyAPjxcheBYOB5fwTzD5exhvgs=
+decred.org/dcrwallet v1.2.3-0.20200728191453-b8be34b4f342 h1:Bt8m5CfxDAde8Ksf9irQQWyvYd5YG+4RoFaMQ7eEF6g=
+decred.org/dcrwallet v1.2.3-0.20200728191453-b8be34b4f342/go.mod h1:3cZSQAgJzWXeSKMxWuyAPjxcheBYOB5fwTzD5exhvgs=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/agl/ed25519 v0.0.0-20170116200512-5312a6153412 h1:w1UutsfOrms1J05zt7ISrnJIXKzwaspym5BTKGx93EI=
 github.com/agl/ed25519 v0.0.0-20170116200512-5312a6153412/go.mod h1:WPjqKcmVOxf0XSf3YxCJs6N6AOSrOx3obionmG7T0y0=
@@ -123,6 +127,8 @@ github.com/gorilla/websocket v1.4.2/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/ad
 github.com/hpcloud/tail v1.0.0/go.mod h1:ab1qPbhIpdTxEkNHXyeSf5vhxWSCs/tWer42PpOxQnU=
 github.com/jessevdk/go-flags v1.4.0 h1:4IU2WS7AumrZ/40jfhf4QVDMsQwqA7VEHozFRrGARJA=
 github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=
+github.com/jessevdk/go-flags v1.4.1-0.20200711081900-c17162fe8fd7 h1:Ug59miTxVKVg5Oi2S5uHlKOIV5jBx4Hb2u0jIxxDaSs=
+github.com/jessevdk/go-flags v1.4.1-0.20200711081900-c17162fe8fd7/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=
 github.com/jrick/bitset v1.0.0 h1:Ws0PXV3PwXqWK2n7Vz6idCdrV/9OrBXgHEJi27ZB9Dw=
 github.com/jrick/bitset v1.0.0/go.mod h1:ZOYB5Uvkla7wIEY4FEssPVi3IQXa02arznRaYaAEPe4=
 github.com/jrick/logrotate v1.0.0 h1:lQ1bL/n9mBNeIXoTUoYRlK4dHuNJVofX9oWqBtPnSzI=
