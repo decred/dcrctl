@@ -1,5 +1,5 @@
 // Copyright (c) 2013-2015 The btcsuite developers
-// Copyright (c) 2015-2019 The Decred developers
+// Copyright (c) 2015-2020 The Decred developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -9,6 +9,7 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -97,12 +98,12 @@ func main() {
 	for _, arg := range args[1:] {
 		if arg == "-" {
 			param, err := bio.ReadString('\n')
-			if err != nil && err != io.EOF {
+			if err != nil && !errors.Is(err, io.EOF) {
 				fmt.Fprintf(os.Stderr, "Failed to read data "+
 					"from stdin: %v\n", err)
 				os.Exit(1)
 			}
-			if err == io.EOF && len(param) == 0 {
+			if errors.Is(err, io.EOF) && len(param) == 0 {
 				fmt.Fprintln(os.Stderr, "Not enough lines "+
 					"provided on stdin")
 				os.Exit(1)
@@ -123,7 +124,8 @@ func main() {
 		// dcrjson.Error as it realistically will always be since the
 		// NewCmd function is only supposed to return errors of that
 		// type.
-		if jerr, ok := err.(dcrjson.Error); ok {
+		var jerr dcrjson.Error
+		if errors.As(err, &jerr) {
 			fmt.Fprintf(os.Stderr, "%s command: %v (code: %s)\n",
 				method, err, jerr.Code)
 			commandUsage(method)

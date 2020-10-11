@@ -1,11 +1,12 @@
 // Copyright (c) 2013-2015 The btcsuite developers
-// Copyright (c) 2015-2019 The Decred developers
+// Copyright (c) 2015-2020 The Decred developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net"
@@ -250,20 +251,23 @@ func loadConfig() (*config, []string, error) {
 	preParser := flags.NewParser(&preCfg, flags.HelpFlag)
 	_, err := preParser.Parse()
 	if err != nil {
-		if e, ok := err.(*flags.Error); ok && e.Type != flags.ErrHelp {
-			fmt.Fprintln(os.Stderr, err)
-			fmt.Fprintln(os.Stderr, "")
-			fmt.Fprintln(os.Stderr, "The special parameter `-` "+
-				"indicates that a parameter should be read "+
-				"from the\nnext unread line from standard input.")
-			os.Exit(1)
-		} else if ok && e.Type == flags.ErrHelp {
-			fmt.Fprintln(os.Stdout, err)
-			fmt.Fprintln(os.Stdout, "")
-			fmt.Fprintln(os.Stdout, "The special parameter `-` "+
-				"indicates that a parameter should be read "+
-				"from the\nnext unread line from standard input.")
-			os.Exit(0)
+		var e *flags.Error
+		if errors.As(err, &e) {
+			if e.Type != flags.ErrHelp {
+				fmt.Fprintln(os.Stderr, err)
+				fmt.Fprintln(os.Stderr, "")
+				fmt.Fprintln(os.Stderr, "The special parameter `-` "+
+					"indicates that a parameter should be read "+
+					"from the\nnext unread line from standard input.")
+				os.Exit(1)
+			} else if e.Type == flags.ErrHelp {
+				fmt.Fprintln(os.Stdout, err)
+				fmt.Fprintln(os.Stdout, "")
+				fmt.Fprintln(os.Stdout, "The special parameter `-` "+
+					"indicates that a parameter should be read "+
+					"from the\nnext unread line from standard input.")
+				os.Exit(0)
+			}
 		}
 	}
 
@@ -295,7 +299,8 @@ func loadConfig() (*config, []string, error) {
 	parser := flags.NewParser(&cfg, flags.Default)
 	err = flags.NewIniParser(parser).ParseFile(preCfg.ConfigFile)
 	if err != nil {
-		if _, ok := err.(*os.PathError); !ok {
+		var perr *os.PathError
+		if !errors.As(err, &perr) {
 			fmt.Fprintf(os.Stderr, "Error parsing config file: %v\n",
 				err)
 			fmt.Fprintln(os.Stderr, usageMessage)
@@ -306,7 +311,8 @@ func loadConfig() (*config, []string, error) {
 	// Parse command line options again to ensure they take precedence.
 	remainingArgs, err := parser.Parse()
 	if err != nil {
-		if e, ok := err.(*flags.Error); !ok || e.Type != flags.ErrHelp {
+		var e *flags.Error
+		if !errors.As(err, &e) || e.Type != flags.ErrHelp {
 			fmt.Fprintln(os.Stderr, usageMessage)
 		}
 		return nil, nil, err
