@@ -45,7 +45,25 @@ func newHTTPClient(cfg *config) (*http.Client, error) {
 		tlsConfig = &tls.Config{
 			InsecureSkipVerify: cfg.TLSSkipVerify,
 		}
-		if !cfg.TLSSkipVerify && cfg.RPCCert != "" {
+		if !cfg.TLSSkipVerify && cfg.Wallet && cfg.ClientCert != "" {
+			serverCAs := x509.NewCertPool()
+			serverCert, err := ioutil.ReadFile(cfg.RPCCert)
+			if err != nil {
+				return nil, err
+			}
+			if !serverCAs.AppendCertsFromPEM(serverCert) {
+				return nil, fmt.Errorf("no certificates found in %s",
+					cfg.RPCCert)
+			}
+			keypair, err := tls.LoadX509KeyPair(cfg.ClientCert, cfg.ClientKey)
+			if err != nil {
+				return nil, fmt.Errorf("read client keypair: %v", err)
+			}
+
+			tlsConfig.Certificates = []tls.Certificate{keypair}
+			tlsConfig.RootCAs = serverCAs
+
+		} else if !cfg.TLSSkipVerify && cfg.RPCCert != "" {
 			pem, err := ioutil.ReadFile(cfg.RPCCert)
 			if err != nil {
 				return nil, err

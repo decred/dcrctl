@@ -30,6 +30,8 @@ const (
 	// able to use.  In particular it doesn't support websockets and
 	// consequently notifications.
 	unusableFlags = dcrjson.UFWebsocketOnly | dcrjson.UFNotification
+
+	clientCertFile = "client.pem"
 )
 
 var (
@@ -37,6 +39,8 @@ var (
 	dcrctlHomeDir          = dcrutil.AppDataDir("dcrctl", false)
 	dcrwalletHomeDir       = dcrutil.AppDataDir("dcrwallet", false)
 	defaultConfigFile      = filepath.Join(dcrctlHomeDir, "dcrctl.conf")
+	defaultClientCertFile  = filepath.Join(dcrctlHomeDir, "client.pem")
+	defaultClientKeyFile   = filepath.Join(dcrctlHomeDir, "client-key.pem")
 	defaultRPCServer       = "localhost"
 	defaultWalletRPCServer = "localhost"
 	defaultRPCCertFile     = filepath.Join(dcrdHomeDir, "rpc.cert")
@@ -123,6 +127,9 @@ type config struct {
 	SimNet          bool   `long:"simnet" description:"Connect to the simulation test network"`
 	TLSSkipVerify   bool   `long:"skipverify" description:"Do not verify tls certificates (not recommended!)"`
 	Wallet          bool   `long:"wallet" description:"Connect to wallet"`
+
+	ClientCert string `long:"cert" description:"Path to TLS certificate for client authentication"`
+	ClientKey  string `long:"key" description:"Path to TLS client authentication key"`
 }
 
 // normalizeAddress returns addr with the passed default port appended if
