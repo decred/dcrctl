@@ -128,6 +128,7 @@ type config struct {
 	TLSSkipVerify   bool   `long:"skipverify" description:"Do not verify tls certificates (not recommended!)"`
 	Wallet          bool   `long:"wallet" description:"Connect to wallet"`
 
+	WalletGRPC bool   `long:"walletgrpc" description:"This flag is required if the wallet that is being connected to requires client certs for grpc."`
 	ClientCert string `long:"cert" description:"Path to TLS certificate for client authentication"`
 	ClientKey  string `long:"key" description:"Path to TLS client authentication key"`
 }
@@ -341,6 +342,18 @@ func loadConfig() (*config, []string, error) {
 		cfg.RPCCert = defaultWalletCertFile
 	}
 
+	if cfg.Wallet && cfg.WalletGRPC {
+		// Set path for the client key/cert depending on if they are set in options
+		if cfg.ClientCert == "" {
+			cfg.ClientCert = defaultClientCertFile
+		}
+		if cfg.ClientKey == "" {
+			cfg.ClientKey = defaultClientKeyFile
+		}
+
+		cfg.ClientCert = cleanAndExpandPath(cfg.ClientCert)
+		cfg.ClientKey = cleanAndExpandPath(cfg.ClientKey)
+	}
 	// When the --wallet flag is specified, use the walletrpcserver port
 	// if specified.
 	if cfg.Wallet && cfg.WalletRPCServer != defaultWalletRPCServer {
