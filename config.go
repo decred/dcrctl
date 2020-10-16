@@ -128,9 +128,9 @@ type config struct {
 	TLSSkipVerify   bool   `long:"skipverify" description:"Do not verify tls certificates (not recommended!)"`
 	Wallet          bool   `long:"wallet" description:"Connect to wallet"`
 
-	WalletGRPC bool   `long:"walletgrpc" description:"This flag is required if the wallet that is being connected to requires client certs for grpc."`
-	ClientCert string `long:"cert" description:"Path to TLS certificate for client authentication"`
-	ClientKey  string `long:"key" description:"Path to TLS client authentication key"`
+	AuthType   string `long:"authtype" description:"Which authtype the connected wallet is currently using. (cannot be used with notls)"`
+	ClientCert string `long:"clientcert" description:"Path to TLS certificate for client authentication"`
+	ClientKey  string `long:"clientkey" description:"Path to TLS client authentication key"`
 }
 
 // normalizeAddress returns addr with the passed default port appended if
@@ -342,7 +342,10 @@ func loadConfig() (*config, []string, error) {
 		cfg.RPCCert = defaultWalletCertFile
 	}
 
-	if cfg.Wallet && cfg.WalletGRPC {
+	if cfg.Wallet && cfg.AuthType == "clientcert" {
+		if cfg.NoTLS {
+			return nil, nil, fmt.Errorf("cannot use notls and clientcert authtype at the same time")
+		}
 		// Set path for the client key/cert depending on if they are set in options
 		if cfg.ClientCert == "" {
 			cfg.ClientCert = defaultClientCertFile

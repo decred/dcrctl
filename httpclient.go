@@ -45,7 +45,7 @@ func newHTTPClient(cfg *config) (*http.Client, error) {
 		tlsConfig = &tls.Config{
 			InsecureSkipVerify: cfg.TLSSkipVerify,
 		}
-		if !cfg.TLSSkipVerify && cfg.WalletGRPC {
+		if !cfg.TLSSkipVerify && cfg.AuthType == "clientcert" {
 			serverCAs := x509.NewCertPool()
 			serverCert, err := ioutil.ReadFile(cfg.RPCCert)
 			if err != nil {
