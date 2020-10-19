@@ -33,6 +33,12 @@ const (
 	unusableFlags = dcrjson.UFWebsocketOnly | dcrjson.UFNotification
 )
 
+// Authorization types.
+const (
+	authTypeBasic      = "basic"
+	authTypeClientCert = "clientcert"
+)
+
 var (
 	dcrdHomeDir            = dcrutil.AppDataDir("dcrd", false)
 	dcrctlHomeDir          = dcrutil.AppDataDir("dcrctl", false)
@@ -127,7 +133,7 @@ type config struct {
 	TLSSkipVerify   bool   `long:"skipverify" description:"Do not verify tls certificates (not recommended!)"`
 	Wallet          bool   `long:"wallet" description:"Connect to wallet"`
 
-	AuthType   string `long:"authtype" description:"Which authtype the connected wallet is currently using. (cannot be used with notls)"`
+	AuthType   string `long:"authtype" description:"The authorization type in use by the target server" choice:"basic" choice:"clientcert" default:"basic"`
 	ClientCert string `long:"clientcert" description:"Path to TLS certificate for client authentication"`
 	ClientKey  string `long:"clientkey" description:"Path to TLS client authentication key"`
 }
@@ -340,17 +346,23 @@ func loadConfig() (*config, []string, error) {
 		return nil, nil, err
 	}
 
+	// The auth type that uses client certifications requires TLS.
+	if cfg.NoTLS && cfg.AuthType == authTypeClientCert {
+		str := "%s: the %q authorization type requires TLS"
+		err := fmt.Errorf(str, "loadConfig", authTypeClientCert)
+		fmt.Fprintln(os.Stderr, err)
+		return nil, nil, err
+	}
+
 	// Override the RPC certificate if the --wallet flag was specified and
 	// the user did not specify one.
 	if cfg.Wallet && cfg.RPCCert == defaultRPCCertFile {
 		cfg.RPCCert = defaultWalletCertFile
 	}
 
-	if cfg.Wallet && cfg.AuthType == "clientcert" {
-		if cfg.NoTLS {
-			return nil, nil, fmt.Errorf("cannot use notls and clientcert authtype at the same time")
-		}
-		// Set path for the client key/cert depending on if they are set in options
+	// Set path for the client key/cert for the clientcert authorization type
+	// when they're specified.
+	if cfg.AuthType == authTypeClientCert {
 		if cfg.ClientCert == "" {
 			cfg.ClientCert = defaultClientCertFile
 		}
@@ -361,11 +373,13 @@ func loadConfig() (*config, []string, error) {
 		cfg.ClientCert = cleanAndExpandPath(cfg.ClientCert)
 		cfg.ClientKey = cleanAndExpandPath(cfg.ClientKey)
 	}
+
 	// When the --wallet flag is specified, use the walletrpcserver port
 	// if specified.
 	if cfg.Wallet && cfg.WalletRPCServer != defaultWalletRPCServer {
 		cfg.RPCServer = cfg.WalletRPCServer
 	}
+
 	// Handle environment variable expansion in the RPC certificate path.
 	cfg.RPCCert = cleanAndExpandPath(cfg.RPCCert)
 
