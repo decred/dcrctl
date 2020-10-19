@@ -38,6 +38,8 @@ var (
 	dcrctlHomeDir          = dcrutil.AppDataDir("dcrctl", false)
 	dcrwalletHomeDir       = dcrutil.AppDataDir("dcrwallet", false)
 	defaultConfigFile      = filepath.Join(dcrctlHomeDir, "dcrctl.conf")
+	defaultClientCertFile  = filepath.Join(dcrctlHomeDir, "client.pem")
+	defaultClientKeyFile   = filepath.Join(dcrctlHomeDir, "client-key.pem")
 	defaultRPCServer       = "localhost"
 	defaultWalletRPCServer = "localhost"
 	defaultRPCCertFile     = filepath.Join(dcrdHomeDir, "rpc.cert")
@@ -124,6 +126,10 @@ type config struct {
 	SimNet          bool   `long:"simnet" description:"Connect to the simulation test network"`
 	TLSSkipVerify   bool   `long:"skipverify" description:"Do not verify tls certificates (not recommended!)"`
 	Wallet          bool   `long:"wallet" description:"Connect to wallet"`
+
+	AuthType   string `long:"authtype" description:"Which authtype the connected wallet is currently using. (cannot be used with notls)"`
+	ClientCert string `long:"clientcert" description:"Path to TLS certificate for client authentication"`
+	ClientKey  string `long:"clientkey" description:"Path to TLS client authentication key"`
 }
 
 // normalizeAddress returns addr with the passed default port appended if
@@ -340,6 +346,21 @@ func loadConfig() (*config, []string, error) {
 		cfg.RPCCert = defaultWalletCertFile
 	}
 
+	if cfg.Wallet && cfg.AuthType == "clientcert" {
+		if cfg.NoTLS {
+			return nil, nil, fmt.Errorf("cannot use notls and clientcert authtype at the same time")
+		}
+		// Set path for the client key/cert depending on if they are set in options
+		if cfg.ClientCert == "" {
+			cfg.ClientCert = defaultClientCertFile
+		}
+		if cfg.ClientKey == "" {
+			cfg.ClientKey = defaultClientKeyFile
+		}
+
+		cfg.ClientCert = cleanAndExpandPath(cfg.ClientCert)
+		cfg.ClientKey = cleanAndExpandPath(cfg.ClientKey)
+	}
 	// When the --wallet flag is specified, use the walletrpcserver port
 	// if specified.
 	if cfg.Wallet && cfg.WalletRPCServer != defaultWalletRPCServer {
