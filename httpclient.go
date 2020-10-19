@@ -63,7 +63,8 @@ func newHTTPClient(cfg *config) (*http.Client, error) {
 			tlsConfig.Certificates = []tls.Certificate{keypair}
 			tlsConfig.RootCAs = serverCAs
 
-		} else if !cfg.TLSSkipVerify && cfg.RPCCert != "" {
+		}
+		if !cfg.TLSSkipVerify && cfg.RPCCert != "" {
 			pem, err := ioutil.ReadFile(cfg.RPCCert)
 			if err != nil {
 				return nil, err

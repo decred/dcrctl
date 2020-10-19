@@ -30,8 +30,6 @@ const (
 	// able to use.  In particular it doesn't support websockets and
 	// consequently notifications.
 	unusableFlags = dcrjson.UFWebsocketOnly | dcrjson.UFNotification
-
-	clientCertFile = "client.pem"
 )
 
 var (
