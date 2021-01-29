@@ -16,9 +16,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	wallettypes "decred.org/dcrwallet/rpc/jsonrpc/types"
+	wallettypes "decred.org/dcrwallet/v2/rpc/jsonrpc/types"
 	"github.com/decred/dcrd/dcrjson/v3"
-	dcrdtypes "github.com/decred/dcrd/rpc/jsonrpc/types/v2"
+	dcrdtypes "github.com/decred/dcrd/rpc/jsonrpc/types/v3"
 )
 
 const (
@@ -120,14 +120,12 @@ func main() {
 	// provided by the user.
 	cmd, err := dcrjson.NewCmd(method, params...)
 	if err != nil {
-		// Show the error along with its error code when it's a
-		// dcrjson.Error as it realistically will always be since the
-		// NewCmd function is only supposed to return errors of that
-		// type.
-		var jerr dcrjson.Error
+		// Show the error along with its error kind when it's a dcrjson.Error as
+		// it realistically will always be since the NewCmd function is only
+		// supposed to return errors of that type.
+		var jerr dcrjson.ErrorKind
 		if errors.As(err, &jerr) {
-			fmt.Fprintf(os.Stderr, "%s command: %v (code: %s)\n",
-				method, err, jerr.Code)
+			fmt.Fprintf(os.Stderr, "%s command: %v (%s)\n", method, err, jerr)
 			commandUsage(method)
 			os.Exit(1)
 		}
