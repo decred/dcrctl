@@ -1,0 +1,5 @@
+/dcrctl
+.vscode
+.idea
+*.orig
+.DS_Store
