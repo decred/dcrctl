@@ -54,7 +54,7 @@ dcrwallet in your build environment:
 
 ```
 $ go mod edit -replace=github.com/decred/dcrd/rpc/jsonrpc/types/v2=../dcrd/rpc/jsonrpc/types
-$ go mod edit -replace=decred.org/dcrwallet=../dcrwallet
+$ go mod edit -replace=decred.org/dcrwallet/v2=../dcrwallet
 ```
 
 These replaces should be removed prior to committing any updated module
@@ -62,7 +62,7 @@ requires:
 
 ```
 $ go mod edit -dropreplace=github.com/decred/dcrd/rpc/jsonrpc/types/v2
-$ go mod edit -dropreplace=decred.org/dcrwallet
+$ go mod edit -dropreplace=decred.org/dcrwallet/v2
 ```
 
 ## Contact
