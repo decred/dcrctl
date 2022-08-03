@@ -1,12 +1,15 @@
 name: Build and Test
 on: [push, pull_request]
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Go CI
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: [1.17, 1.18]
+        go: [1.18, 1.19]
     steps:
       - name: Set up Go
         uses: actions/setup-go@84cbf8094393cdc5fe1fe1671ff2647332956b1a #v3.2.1
@@ -17,14 +20,8 @@ jobs:
       - name: Install linters
         run: "curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.48.0"
       - name: Build
-        env:
-          GO111MODULE: "on"
         run: go build ./...
       - name: Lint
-        env:
-          GO111MODULE: "on"
         run: golangci-lint run --disable-all --deadline=10m --enable=gofmt --enable=govet --enable=gosimple --enable=unconvert --enable=ineffassign
       - name: Test
-        env:
-          GO111MODULE: "on"
         run: go test -v ./...
