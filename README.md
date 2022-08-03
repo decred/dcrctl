@@ -28,19 +28,36 @@ changes may be written to a config file in a platform-specific location:
 
 ## Build and installation
 
-The latest dcrctl may be built in a single command without cloning this
-repository:
+- **Install Go 1.18 or 1.19**
 
-```
-$ GO111MODULE=on go get decred.org/dcrctl
-```
+  Installation instructions can be found here: https://golang.org/doc/install.
+  Ensure Go was installed properly and is a supported version:
+  ```sh
+  $ go version
+  $ go env GOROOT GOPATH
+  ```
+  NOTE: `GOROOT` and `GOPATH` must not be on the same path. It is recommended
+  to add `$GOPATH/bin` to your `PATH` according to the Golang.org instructions.
 
-Appending `@master` to this will perform a release build using the latest code
-from the master branch.  This may be useful to execute RPC methods not yet found
-in the latest Decred release.
+- **Build or Update dcrctl**
 
-Alternatively, a development build can be performed by running `go install` in a
-locally checked-out repository.
+  The latest release of dcrctl may be built in a single command without cloning
+  this repository:
+
+  ```sh
+  $ go install decred.org/dcrctl@release-v1.7.4
+  ```
+
+  Using `@master` instead will perform a release build using the latest code
+  from the master branch.  This may be useful to execute RPC methods not yet
+  found in the latest Decred release:
+
+  ```sh
+  $ go install decred.org/dcrctl@master
+  ```
+
+  Alternatively, a development build can be performed by running `go install` in
+  a locally checked-out repository.
 
 ## Developing
 
