@@ -28,8 +28,7 @@ changes may be written to a config file in a platform-specific location:
 
 ## Build and installation
 
-The latest dcrctl may be built in a single command without cloning this
-repository:
+- **Install Go 1.19 or 1.20**
 
 ```
 $ GO111MODULE=on go get decred.org/dcrctl
