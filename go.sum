@@ -1,7 +1,7 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 decred.org/cspp/v2 v2.0.0/go.mod h1:0shJWKTWY3LxZEWGxtbER1Y45+HVjC0WZtj4bctSzCI=
-decred.org/dcrwallet/v2 v2.0.10 h1:ni/27pSDlIi8T/gj4oDYAyaMN+AFQ/ykcudk5UFQ9j4=
-decred.org/dcrwallet/v2 v2.0.10/go.mod h1:q4V2AiAAUBcGerp/jNm8IuN7r3Q9Avv13jhtUNIDzUw=
+decred.org/dcrwallet/v2 v2.0.11 h1:JhR5KAb/x04wzZEoTStbxeUR0r4K7rHDqEnjdM1zpIU=
+decred.org/dcrwallet/v2 v2.0.11/go.mod h1:q4V2AiAAUBcGerp/jNm8IuN7r3Q9Avv13jhtUNIDzUw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/agl/ed25519 v0.0.0-20170116200512-5312a6153412 h1:w1UutsfOrms1J05zt7ISrnJIXKzwaspym5BTKGx93EI=
 github.com/agl/ed25519 v0.0.0-20170116200512-5312a6153412/go.mod h1:WPjqKcmVOxf0XSf3YxCJs6N6AOSrOx3obionmG7T0y0=
