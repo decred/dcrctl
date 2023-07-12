@@ -45,7 +45,7 @@ changes may be written to a config file in a platform-specific location:
   this repository:
 
   ```sh
-  $ go install decred.org/dcrctl@release-v1.7.7
+  $ go install decred.org/dcrctl@release-v1.8.0
   ```
 
   Using `@master` instead will perform a release build using the latest code
@@ -70,16 +70,16 @@ replacements may be utilized to point to development versions of dcrd and
 dcrwallet in your build environment:
 
 ```
-$ go mod edit -replace=github.com/decred/dcrd/rpc/jsonrpc/types/v2=../dcrd/rpc/jsonrpc/types
-$ go mod edit -replace=decred.org/dcrwallet/v2=../dcrwallet
+$ go mod edit -replace=github.com/decred/dcrd/rpc/jsonrpc/types/v4=../dcrd/rpc/jsonrpc/types
+$ go mod edit -replace=decred.org/dcrwallet/v3=../dcrwallet
 ```
 
 These replaces should be removed prior to committing any updated module
 requires:
 
 ```
-$ go mod edit -dropreplace=github.com/decred/dcrd/rpc/jsonrpc/types/v2
-$ go mod edit -dropreplace=decred.org/dcrwallet/v2
+$ go mod edit -dropreplace=github.com/decred/dcrd/rpc/jsonrpc/types/v4
+$ go mod edit -dropreplace=decred.org/dcrwallet/v3
 ```
 
 ## Contact
