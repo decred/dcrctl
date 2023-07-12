@@ -1,5 +1,30 @@
-/dcrctl
+# Temp files
+*~
+*.orig
+
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+
+# Folders
 .vscode
 .idea
-*.orig
 .DS_Store
+
+# Testing, profiling, and benchmarking artifacts
+cov.out
+*cpu.out
+*mem.out
+
+# Go 1.18 workspace
+go.work
+go.work.sum
+
+# Binaries
+*.exe
+dcrctl
+
+# Vim
+*.sw*
+Session.vim
