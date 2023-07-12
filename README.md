@@ -61,25 +61,18 @@ changes may be written to a config file in a platform-specific location:
 
 ## Developing
 
-When developing either the dcrd or dcrwallet RPC servers and making
+When developing either the `dcrd` or `dcrwallet` RPC servers and making
 modifications to the RPC methods, you may want to build a development version of
-dcrctl supporting these changes.  Due to dcrctl being built around
+`dcrctl` supporting these changes.  Due to `dcrctl` being built around
 package-global method registrations and reflection, supporting these changes
-only requires building with the updated packages.  To perform this, module
-replacements may be utilized to point to development versions of dcrd and
-dcrwallet in your build environment:
+only requires building with the updated packages.
+
+This can be easily achieved by making use of a local Go workspace that uses the
+development versions of `dcrd` and `dcrwallet` as follows:
 
 ```
-$ go mod edit -replace=github.com/decred/dcrd/rpc/jsonrpc/types/v4=../dcrd/rpc/jsonrpc/types
-$ go mod edit -replace=decred.org/dcrwallet/v3=../dcrwallet
-```
-
-These replaces should be removed prior to committing any updated module
-requires:
-
-```
-$ go mod edit -dropreplace=github.com/decred/dcrd/rpc/jsonrpc/types/v4
-$ go mod edit -dropreplace=decred.org/dcrwallet/v3
+$ go work init .
+$ go work use ../dcrd/rpc/jsonrpc/types ../dcrwallet
 ```
 
 ## Contact
