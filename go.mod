@@ -3,10 +3,10 @@ module decred.org/dcrctl
 go 1.17
 
 require (
-	decred.org/dcrwallet/v3 v3.0.0
+	decred.org/dcrwallet/v3 v3.0.1
 	github.com/decred/dcrd/dcrjson/v4 v4.0.1
 	github.com/decred/dcrd/dcrutil/v4 v4.0.1
-	github.com/decred/dcrd/rpc/jsonrpc/types/v4 v4.0.0
+	github.com/decred/dcrd/rpc/jsonrpc/types/v4 v4.1.0
 	github.com/decred/go-socks v1.1.0
 	github.com/jessevdk/go-flags v1.5.0
 )
