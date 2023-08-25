@@ -36,8 +36,7 @@ changes may be written to a config file in a platform-specific location:
   $ go version
   $ go env GOROOT GOPATH
   ```
-  NOTE: `GOROOT` and `GOPATH` must not be on the same path. It is recommended
-  to add `$GOPATH/bin` to your `PATH` according to the Golang.org instructions.
+  NOTE: `GOROOT` and `GOPATH` must not be on the same path (if these are initialized).
 
 - **Build or Update dcrctl**
 
@@ -58,6 +57,12 @@ changes may be written to a config file in a platform-specific location:
 
   Alternatively, a development build can be performed by running `go install` in
   a locally checked-out repository.
+
+  If you want to easily access dcrctl via `dcrctl` handle on command-line, since
+  `go install` will put **dcrctl** binary in `go env GOPATH` you might need to
+  ensure the `go env GOPATH` dir (or just **dcrctl** binary) is present in your
+  `$PATH` (on Linux you might want to update your
+  [~/.bashrc](https://stackoverflow.com/a/21012349) to achieve that).
 
 ## Developing
 
