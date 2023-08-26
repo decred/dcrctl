@@ -28,7 +28,7 @@ changes may be written to a config file in a platform-specific location:
 
 ## Build and installation
 
-- **Install Go 1.19 or 1.20**
+- **Install Go 1.19 or higher version**
 
   Installation instructions can be found here: https://golang.org/doc/install.
   Ensure Go was installed properly and is a supported version:
@@ -36,8 +36,9 @@ changes may be written to a config file in a platform-specific location:
   $ go version
   $ go env GOROOT GOPATH
   ```
-  NOTE: `GOROOT` and `GOPATH` must not be on the same path. It is recommended
-  to add `$GOPATH/bin` to your `PATH` according to the Golang.org instructions.
+  NOTE: if `GOROOT` and `GOPATH` are initialized they must not be on the same path.
+  It is recommended to add `$GOPATH/bin` to your `PATH` according to the Golang.org
+  instructions.
 
 - **Build or Update dcrctl**
 
@@ -58,6 +59,14 @@ changes may be written to a config file in a platform-specific location:
 
   Alternatively, a development build can be performed by running `go install` in
   a locally checked-out repository.
+
+  If you want to easily access `dcrctl` from the command-line without having to
+  type the full path to the binary every time, ensure the bin directory rooted
+  at the path reported by `go env GOPATH` is added to your system path:
+
+  * macOS: [how to add binary to your PATH](https://gist.github.com/nex3/c395b2f8fd4b02068be37c961301caa7#mac-os-x)
+  * Windows: [how to add binary to your PATH](https://gist.github.com/nex3/c395b2f8fd4b02068be37c961301caa7#windows)
+  * Linux and other Unix: [how to add binary to your PATH](https://gist.github.com/nex3/c395b2f8fd4b02068be37c961301caa7#linux)
 
 ## Developing
 
