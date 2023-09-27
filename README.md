@@ -46,7 +46,7 @@ changes may be written to a config file in a platform-specific location:
   this repository:
 
   ```sh
-  $ go install decred.org/dcrctl@release-v1.8.0
+  $ go install decred.org/dcrctl@release-v1.8.1
   ```
 
   Using `@master` instead will perform a release build using the latest code
