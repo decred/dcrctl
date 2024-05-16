@@ -28,7 +28,7 @@ changes may be written to a config file in a platform-specific location:
 
 ## Build and installation
 
-- **Install Go 1.20 or higher version**
+- **Install Go 1.21 or higher version**
 
   Installation instructions can be found here: https://golang.org/doc/install.
   Ensure Go was installed properly and is a supported version:
