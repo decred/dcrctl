@@ -1,9 +1,9 @@
 module decred.org/dcrctl
 
-go 1.17
+go 1.22
 
 require (
-	decred.org/dcrwallet/v4 v4.1.3
+	decred.org/dcrwallet/v5 v5.0.0-20240919142439-4b3ccac3c01b
 	github.com/decred/dcrd/dcrjson/v4 v4.1.0
 	github.com/decred/dcrd/dcrutil/v4 v4.0.2
 	github.com/decred/dcrd/rpc/jsonrpc/types/v4 v4.3.0
@@ -25,6 +25,6 @@ require (
 	github.com/decred/dcrd/wire v1.7.0 // indirect
 	github.com/decred/slog v1.2.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.8 // indirect
-	golang.org/x/sys v0.23.0 // indirect
+	golang.org/x/sys v0.25.0 // indirect
 	lukechampine.com/blake3 v1.3.0 // indirect
 )
