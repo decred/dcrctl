@@ -3,7 +3,7 @@ module decred.org/dcrctl
 go 1.17
 
 require (
-	decred.org/dcrwallet/v4 v4.1.3
+	decred.org/dcrwallet/v4 v4.2.0
 	github.com/decred/dcrd/dcrjson/v4 v4.1.0
 	github.com/decred/dcrd/dcrutil/v4 v4.0.2
 	github.com/decred/dcrd/rpc/jsonrpc/types/v4 v4.3.0
@@ -16,7 +16,7 @@ require (
 	github.com/dchest/siphash v1.2.3 // indirect
 	github.com/decred/base58 v1.0.5 // indirect
 	github.com/decred/dcrd/chaincfg/chainhash v1.0.4 // indirect
-	github.com/decred/dcrd/crypto/blake256 v1.0.1 // indirect
+	github.com/decred/dcrd/crypto/blake256 v1.1.0 // indirect
 	github.com/decred/dcrd/crypto/ripemd160 v1.0.2 // indirect
 	github.com/decred/dcrd/dcrec v1.0.1 // indirect
 	github.com/decred/dcrd/dcrec/edwards/v2 v2.0.3 // indirect
