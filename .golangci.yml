@@ -7,20 +7,33 @@ linters:
     - asciicheck
     - bidichk
     - bodyclose
+    - containedctx
+    - copyloopvar
     - dupword
     - durationcheck
     - errchkjson
     - errorlint
+    - exhaustive
+    - fatcontext
+    - goconst
+    - godot
     - govet
     - grouper
     - ineffassign
+    - makezero
+    - mirror
     - misspell
+    - nilerr
+    - nilnil
     - nosprintfhostport
+    - prealloc
+    - predeclared
     - reassign
     - rowserrcheck
     - staticcheck
     - tparallel
     - unconvert
+    - unparam
     - unused
     - usestdlibvars
     - usetesting
