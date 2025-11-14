@@ -1,5 +1,5 @@
 // Copyright (c) 2013-2015 The btcsuite developers
-// Copyright (c) 2015-2023 The Decred developers
+// Copyright (c) 2015-2025 The Decred developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -58,7 +58,7 @@ func newHTTPClient(cfg *config) (*http.Client, error) {
 			}
 			keypair, err := tls.LoadX509KeyPair(cfg.ClientCert, cfg.ClientKey)
 			if err != nil {
-				return nil, fmt.Errorf("read client keypair: %v", err)
+				return nil, fmt.Errorf("read client keypair: %w", err)
 			}
 
 			tlsConfig.Certificates = []tls.Certificate{keypair}
@@ -73,7 +73,7 @@ func newHTTPClient(cfg *config) (*http.Client, error) {
 
 			pool := x509.NewCertPool()
 			if ok := pool.AppendCertsFromPEM(pem); !ok {
-				return nil, fmt.Errorf("invalid certificate file: %v",
+				return nil, fmt.Errorf("invalid certificate file: %s",
 					cfg.RPCCert)
 			}
 			tlsConfig.RootCAs = pool
