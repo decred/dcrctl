@@ -106,7 +106,7 @@ func sendPostRequest(marshalledJSON []byte, cfg *config) ([]byte, error) {
 		fmt.Println(string(marshalledJSON))
 	}
 	bodyReader := bytes.NewReader(marshalledJSON)
-	httpRequest, err := http.NewRequest("POST", url, bodyReader)
+	httpRequest, err := http.NewRequest(http.MethodPost, url, bodyReader)
 	if err != nil {
 		return nil, err
 	}
