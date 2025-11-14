@@ -1,5 +1,5 @@
 // Copyright (c) 2013-2015 The btcsuite developers
-// Copyright (c) 2015-2023 The Decred developers
+// Copyright (c) 2015-2025 The Decred developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -40,9 +40,9 @@ func commandUsage(method interface{}) {
 	fmt.Fprintf(os.Stderr, "  %s\n", usage)
 }
 
-// usage displays the general usage when the help flag is not displayed and
-// and an invalid command was specified.  The commandUsage function is used
-// instead when a valid command was specified.
+// usage displays the general usage when the help flag is not displayed and an
+// invalid command was specified.  The commandUsage function is used instead
+// when a valid command was specified.
 func usage(errorMessage string) {
 	appName := filepath.Base(os.Args[0])
 	appName = strings.TrimSuffix(appName, filepath.Ext(appName))
