@@ -123,14 +123,14 @@ type config struct {
 	RPCServer       string `short:"s" long:"rpcserver" description:"RPC server to connect to"`
 	WalletRPCServer string `short:"w" long:"walletrpcserver" description:"Wallet RPC server to connect to"`
 	RPCCert         string `short:"c" long:"rpccert" description:"RPC server certificate chain for validation"`
-	PrintJSON       bool   `short:"j" long:"json" description:"Print json messages sent and received"`
+	PrintJSON       bool   `short:"j" long:"json" description:"Print JSON messages sent and received"`
 	NoTLS           bool   `long:"notls" description:"Disable TLS"`
 	Proxy           string `long:"proxy" description:"Connect via SOCKS5 proxy (eg. 127.0.0.1:9050)"`
 	ProxyUser       string `long:"proxyuser" description:"Username for proxy server"`
 	ProxyPass       string `long:"proxypass" default-mask:"-" description:"Password for proxy server"`
 	TestNet         bool   `long:"testnet" description:"Connect to testnet"`
 	SimNet          bool   `long:"simnet" description:"Connect to the simulation test network"`
-	TLSSkipVerify   bool   `long:"skipverify" description:"Do not verify tls certificates (not recommended!)"`
+	TLSSkipVerify   bool   `long:"skipverify" description:"Do not verify TLS certificates (not recommended!)"`
 	Wallet          bool   `long:"wallet" description:"Connect to wallet"`
 
 	AuthType   string `long:"authtype" description:"The authorization type in use by the target server" choice:"basic" choice:"clientcert" default:"basic"`
