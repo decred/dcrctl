@@ -3,7 +3,6 @@ dcrctl
 
 [![Build Status](https://github.com/decred/dcrctl/workflows/Build%20and%20Test/badge.svg)](https://github.com/decred/dcrctl/actions)
 [![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
-[![Go Report Card](https://goreportcard.com/badge/github.com/decred/dcrctl)](https://goreportcard.com/report/github.com/decred/dcrctl)
 
 Dcrctl is a command-line client for interacting with the JSON-RPC servers of
 [dcrd](https://github.com/decred/dcrd) and
